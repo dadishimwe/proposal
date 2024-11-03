@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuba Broadband - Quotation System</title>
+    <style>
+        :root {
+            --orange: #FF6B00;
+            --blue: #0066CC;
+            --table-border: #ccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .company-info {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .quote-title {
+            background: var(--orange);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .quote-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .quote-info {
+            border: 1px solid var(--table-border);
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid var(--table-border);
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .total-row {
+            font-weight: bold;
+            background-color: #f8f8f8;
+        }
+
+        input[type="number"] {
+            width: 80px;
+            padding: 4px;
+        }
+
+        .terms {
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        .terms ol {
+            margin-left: 20px;
+        }
+
+        .calculate-btn {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        .calculate-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="zuba.png" alt="Zuba Broadband Logo">
+            <div class="company-info">
+                <div>ZUBA BROADBAND LTD</div>
+                <div>KG 548 STREET</div>
+                <div>Kigali, Rwanda</div>
+                <div>robert.fogler@zubabroadband.com</div>
+                <div>Cell: +1.303.888.8877 / 0790.000.7777</div>
+            </div>
+        </div>
+        <div class="partner-logo">
+            <img src="equity.png" alt="Equity Bank Logo">
+        </div>
+    </div>
+
+    <div class="quote-title">
+        STARLINK INTERNET INSTALLATION IN 36 SITES IN RWANDA
+    </div>
+
+    <div class="quote-details">
+        <div class="quote-info">
+            <p><strong>Addressed To:</strong></p>
+            <p>Attn: Carole Karema</p>
+            <p>EQUITY BANK RWANDA</p>
+            <p>KIGALI RWANDA</p>
+        </div>
+        <div class="quote-info">
+            <p><strong>Quote Number:</strong> SQ/RW- quote 10/24-Kigali</p>
+            <p><strong>Date:</strong> <span id="currentDate"></span></p>
+            <p><strong>Currency:</strong> USD</p>
+            <p><strong>Validity:</strong> 30 Days</p>
+            <p><strong>Sales Manager:</strong> Robert Fogler</p>
+            <p><strong>Mobile:</strong> +1 303 888 8877 / 0791701472</p>
+        </div>
+    </div>
+
+    <h3>One Time Cost:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>LOCATION</th>
+                <th>DESCRIPTION</th>
+                <th>UNIT PRICE (USD)</th>
+                <th>QTY</th>
+                <th>20% EXCISE</th>
+                <th>18% VAT</th>
+                <th>TOTAL (USD)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Rwanda</td>
+                <td>Installation</td>
+                <td><input type="number" id="installationPrice" value="36" onchange="calculateTotals()"></td>
+                <td><input type="number" id="installationQty" value="1" onchange="calculateTotals()"></td>
+                <td id="installationExcise">N/A</td>
+                <td id="installationVat">0.00</td>
+                <td id="installationTotal">0.00</td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="6" align="right">Subtotal</td>
+                <td id="oneTimeTotal">0.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Monthly Recurring Charge (MRC) OPTION 1 - HIGH PERFORMANCE STARLINK DISHES</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>LOCATION</th>
+                <th>DESCRIPTION</th>
+                <th>UNIT PRICE (USD)</th>
+                <th>QTY</th>
+                <th>20% EXCISE</th>
+                <th>18% VAT</th>
+                <th>TOTAL (USD)</th>
+            </tr>
+        </thead>
+        <tbody id="highPerfTableBody">
+            <!-- Dynamically populated -->
+        </tbody>
+    </table>
+
+    <h3>Monthly Recurring Charge (MRC) STANDARD STARLINK DISHES</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>LOCATION</th>
+                <th>DESCRIPTION</th>
+                <th>UNIT PRICE (USD)</th>
+                <th>QTY</th>
+                <th>20% EXCISE</th>
+                <th>18% VAT</th>
+                <th>TOTAL (USD)</th>
+            </tr>
+        </thead>
+        <tbody id="standardTableBody">
+            <!-- Dynamically populated -->
+        </tbody>
+    </table>
+
+    <button class="calculate-btn" onclick="calculateTotals()">Calculate All Totals</button>
+
+    <div class="terms">
+        <h4>Terms and Conditions:</h4>
+        <ol>
+            <li>Above quote is based on a minimum 36-month contract</li>
+            <li>Service priced in USD but payable in RWF based on the current exchange rate, prices exclusive of tax</li>
+            <li>Customer is advised to ensure the stability of electrical power by using a stabilizer/UPS</li>
+            <li>Confirmation of an order is by signed agreement and advance payment</li>
+            <li>Above prices are subject to any additional requirements and/or taxes</li>
+            <li>Price may vary based on complexity of installation, distance from Kigali and number of sites contracted</li>
+            <li>Additional out of data caps is $0.19 per GB</li>
+        </ol>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+
+        // Package data
+        const highPerfPackages = [
+            { description: '1 TB Package - Priority', price: 800 },
+            { description: '2 TB Package - Priority', price: 900 },
+            { description: '5 TB Package - Priority', price: 1250 }
+        ];
+
+        const standardPackages = [
+            { description: '1 TB package - Priority', price: 450 },
+            { description: '2 TB Package - Priority', price: 600 },
+            { description: '5 TB Package - Priority', price: 900 }
+        ];
+
+        // Populate tables
+        function populateTable(packages, tableId) {
+            const tbody = document.getElementById(tableId);
+            tbody.innerHTML = '';
+            
+            packages.forEach((pkg, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>Rwanda</td>
+                    <td>${pkg.description}</td>
+                    <td><input type="number" class="price-input" value="${pkg.price}" readonly></td>
+                    <td><input type="number" class="qty-input" value="0" onchange="calculateTotals()"></td>
+                    <td class="excise">0.00</td>
+                    <td class="vat">0.00</td>
+                    <td class="total">0.00</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // Add subtotal row
+            const subtotalRow = document.createElement('tr');
+            subtotalRow.className = 'total-row';
+            subtotalRow.innerHTML = `
+                <td colspan="6" align="right">Subtotal</td>
+                <td class="subtotal">0.00</td>
+            `;
+            tbody.appendChild(subtotalRow);
+        }
+
+        // Calculate totals
+        function calculateTotals() {
+            // Calculate one-time costs
+            const installPrice = parseFloat(document.getElementById('installationPrice').value) || 0;
+            const installQty = parseFloat(document.getElementById('installationQty').value) || 0;
+            const installVat = installPrice * installQty * 0.18;
+            const installTotal = installPrice * installQty + installVat;
+            
+            document.getElementById('installationVat').textContent = installVat.toFixed(2);
+            document.getElementById('installationTotal').textContent = installTotal.toFixed(2);
+            document.getElementById('oneTimeTotal').textContent = installTotal.toFixed(2);
+
+            // Calculate package totals
+            calculatePackageTotals('highPerfTableBody');
+            calculatePackageTotals('standardTableBody');
+        }
+
+        function calculatePackageTotals(tableId) {
+            const tbody = document.getElementById(tableId);
+            let subtotal = 0;
+
+            // Calculate each row except the last (subtotal) row
+            const rows = tbody.getElementsByTagName('tr');
+            for (let i = 0; i < rows.length - 1; i++) {
+                const row = rows[i];
+                const price = parseFloat(row.querySelector('.price-input').value) || 0;
+                const qty = parseFloat(row.querySelector('.qty-input').value) || 0;
+                
+                const excise = price * qty * 0.20;
+                const vat = (price * qty + excise) * 0.18;
+                const total = price * qty + excise + vat;
+                
+                row.querySelector('.excise').textContent = excise.toFixed(2);
+                row.querySelector('.vat').textContent = vat.toFixed(2);
+                row.querySelector('.total').textContent = total.toFixed(2);
+                
+                subtotal += total;
+            }
+
+            // Update subtotal
+            tbody.querySelector('.subtotal').textContent = subtotal.toFixed(2);
+        }
+
+        // Initialize tables
+        populateTable(highPerfPackages, 'highPerfTableBody');
+        populateTable(standardPackages, 'standardTableBody');
+        calculateTotals();
+    </script>
+</body>
+</html>
