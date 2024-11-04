@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    .quotation-info {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .goals-section {
+      background: #1a2942;
+      color: white;
+      padding: 2rem;
+    }
+
+    .options-section {
+      padding: 2rem;
+      background: #fff;
+    }
+
+    .option-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 1rem 0;
+    }
+
+    .option-card {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .option-card h3 {
+      color: #1a2942;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #ff6b00;
+    }
+
+    .option-card ul {
+      list-style: none;
+    }
+
+    .option-card li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .option-card li:before {
+      content: "•";
+      color: #ff6b00;
+      position: absolute;
+      left: 0;
+    }
+
+    .solution-section {
+      background: #f8f9fa;
+      padding: 2rem;
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .solution-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .solution-item h4 {
+      color: #ff6b00;
+      margin-bottom: 0.5rem;
+    }
+
+    .package-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+
+    .package-table th {
+      background: #ff6b00;
+      color: white;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    .package-table td {
+      padding: 1rem;
+      border: 1px solid #ddd;
+    }
+
+    .input-qty {
+      width: 80px;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .notice-section {
+      background: #1a2942;
+      color: white;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .notes-section {
+      padding: 2rem;
+      background: #f8f9fa;
+    }
+
+    .note {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .total-section {
+      padding: 2rem;
+      background: #1a2942;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-title {
+      color: #1a2942;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #ff6b00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <img src="zuba.png" alt="ZUBA" class="logo">
+      <img src="equity.png" class="logo">
+    </header>
+
+    <div class="quotation-info">
+      <div>
+        <h3>Addressed To:</h3>
+        <p>EQUITY BANK RWANDA</p>
+        <p>Kigali Rwanda</p>
+        <p>Attn: Carole Karema</p>
+      </div>
+      <div>
+        <p>No.: EQ/RW- quote 10/24- Kigali</p>
+        <p>Date: 11/4/2024</p>
+        <p>Currency: USD Payable</p>
+        <p>Validity: 30 Days</p>
+      </div>
+    </div>
+
+    <div class="goals-section">
+      <h2>Our Understanding of Your Goals</h2>
+      <p>1. To secure reliable, fast internet for key business objectives, such as group video calls, security footage uploaded to the cloud, and financial transaction reliability and security.</p>
+      <p>2. To connect all 36 branches in Rwanda, regardless of location or proximity to infrastructure.</p>
+    </div>
+
+    <div class="options-section">
+      <h2 class="section-title">Equipment and Services Options</h2>
+      <div class="option-cards">
+        <div class="option-card">
+          <h3>Option 1: High Performance Hardware</h3>
+          <ul>
+            <li>All installation, including mounts and cabling</li>
+            <li>Site visits to confirm ideal installation method for best performance</li>
+            <li>Unlimited monthly data at download speeds of up to 220 Mbps, with 2 TB of monthly Priority Data</li>
+            <li>IT staff training for basic troubleshooting and maintenance</li>
+            <li>Monthly data usage and performance reports and system health checks</li>
+            <li>Public IP 24/7 service and maintenance</li>
+            <li>Flexibility to change monthly plans on a per-site basis</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3>Option 2: Standard Hardware</h3>
+          <ul>
+            <li>All installation, including mounts and cabling</li>
+            <li>Site visits to confirm ideal installation method for best performance</li>
+            <li>Unlimited monthly data at download speeds of up to 220 Mbps with Priority Data</li>
+            <li>IT staff training for basic troubleshooting and maintenance</li>
+            <li>Monthly data usage and performance reports and system health checks</li>
+            <li>Public IP 24/7 service and maintenance</li>
+            <li>Flexibility to change monthly plans on a per-site basis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="solution-section">
+      <h2 class="section-title">Our Solution</h2>
+      <div class="solution-grid">
+        <div class="solution-item">
+          <h4>Simple</h4>
+          <p>No up-front costs: Equipment, installation, maintenance, 24/7 customer care, and Priority Data service plans all included in one monthly price.</p>
+        </div>
+        <div class="solution-item">
+          <h4>Flexible</h4>
+          <p>You can change data plans at any time, on a site- or branch-specific basis, at no extra charge.</p>
+        </div>
+        <div class="solution-item">
+          <h4>Measurable</h4>
+          <p>We provide monthly detailed usage reports and system health checks on a site-specific basis.</p>
+        </div>
+        <div class="solution-item">
+          <h4>Available Anywhere</h4>
+          <p>Only requirement is a power source. We can install in all of your branches within weeks. We can provide service in any country where Starlink is licensed, including Kenya.</p>
+        </div>
+      </div>
+    </div>
+
+    <table class="package-table">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Description</th>
+          <th>Unit Price (USD)</th>
+          <th>Quantity</th>
+          <th>Total (USD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rwanda</td>
+          <td>1 TB Package - Priority</td>
+          <td>$450.00</td>
+          <td><input type="number" class="input-qty" data-price="450" min="0" value="0"></td>
+          <td class="row-total">$0.00</td>
+        </tr>
+        <tr>
+          <td>Rwanda</td>
+          <td>2 TB Package - Priority</td>
+          <td>$600.00</td>
+          <td><input type="number" class="input-qty" data-price="600" min="0" value="0"></td>
+          <td class="row-total">$0.00</td>
+        </tr>
+        <tr>
+          <td>Rwanda</td>
+          <td>6 TB Package - Priority</td>
+          <td>$900.00</td>
+          <td><input type="number" class="input-qty" data-price="900" min="0" value="0"></td>
+          <td class="row-total">$0.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="notice-section">
+      <h3>NOTICE!</h3>
+      <p>Prices are quoted in USD but will be billed in RwF according to the then-prevailing exchange rate.</p>
+    </div>
+
+    <div class="notes-section">
+      <h2 class="section-title">Important Notes</h2>
+      <div class="note">
+        <strong>Note 1:</strong> This pricing is based on Zuba's recommended package for EQUITY BANK's usage. With this package, EQUITY BANK can stream real-time CCTV video and provide video conferencing from each site and handle other high-bandwidth tasks.
+      </div>
+      <div class="note">
+        <strong>Note 2:</strong> For excessively complex installations or long cabling requirements, additional charges may apply, which will be clearly disclosed to EQUITY BANK in a report after our site visits.
+      </div>
+      <div class="note">
+        <strong>Note 3:</strong> Service priced in USD but payable in RWF based on the current exchange rate, prices exclusive of tax
+      </div>
+      <div class="note">
+        <strong>Note 4:</strong> Above quote is based on a minimum 36-month contract
+      </div>
+      <div class="note">
+        <strong>Note 5:</strong> Customer is advised to ensure the stability of electrical power by using a stabilizer/UPS
+      </div>
+      <div class="note">
+        <strong>Note 6:</strong> Confirmation of an order is by signed agreement and advance payment
+      </div>
+      <div class="note">
+        <strong>Note 7:</strong> Above prices are subject to any additional requirements and/or taxes
+      </div>
+      <div class="note">
+        <strong>Note 8:</strong> Price may vary based on complexity of installation, distance from Kigali and number of sites contracted
+      </div>
+      <div class="note">
+        <strong>Data Overage:</strong> Additional out of data caps is $0.19 per GB
+      </div>
+      <div id="overage-calculator" class="note">
+        <h3>Data Overage Calculator</h3>
+        <p>Calculate additional costs for data overages:</p>
+        <input type="number" id="gb-over" placeholder="Enter GB over limit" min="0" style="padding: 0.5rem; margin: 1rem 0;">
+        <p>Cost: <span id="overage-cost">$0.00</span></p>
+      </div>
+    </div>
+
+    <div class="total-section">
+      <h2>Total</h2>
+      <h2 id="grand-total">$0.00</h2>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.input-qty').forEach(input => {
+      input.addEventListener('input', updateTotals);
+    });
+
+    document.getElementById('gb-over').addEventListener('input', calculateOverage);
+
+    function updateTotals() {
+      let grandTotal = 0;
+      
+      document.querySelectorAll('.input-qty').forEach(input => {
+        const price = parseFloat(input.dataset.price);
+        const quantity = parseInt(input.value) || 0;
+        const rowTotal = price * quantity;
+        
+        input.closest('tr').querySelector('.row-total').textContent = 
+          `$${rowTotal.toFixed(2)}`;
+        
+        grandTotal += rowTotal;
+      });
+
+      document.getElementById('grand-total').textContent = 
+        `$${grandTotal.toFixed(2)}`;
+    }
+
+    function calculateOverage() {
+      const gbOver = parseFloat(document.getElementById('gb-over').value) || 0;
+      const overageCost = gbOver * 0.19;
+      document.getElementById('overage-cost').textContent = 
+        `$${overageCost.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
