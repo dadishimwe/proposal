@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Previous CSS remains the same */
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: system-ui, -apple-system, sans-serif;
+        }
+    
+        body {
+          background: #f5f5f5;
+          padding: 2rem;
+        }
+    
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          overflow: hidden;
+        }
+    
+        .header {
+          padding: 2rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #eee;
+        }
+    
+        .logo {
+          height: 50px;
+        }
+    
+        .quotation-info {
+          padding: 2rem;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+    
+        .goals-section {
+          background: #1a2942;
+          color: white;
+          padding: 2rem;
+        }
+    
+        .options-section {
+          padding: 2rem;
+          background: #fff;
+        }
+    
+        .option-cards {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin: 1rem 0;
+        }
+    
+        .option-card {
+          background: #f8f9fa;
+          border-radius: 8px;
+          padding: 1.5rem;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    
+        .option-card h3 {
+          color: #1a2942;
+          margin-bottom: 1rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 2px solid #ff6b00;
+        }
+    
+        .option-card ul {
+          list-style: none;
+        }
+    
+        .option-card li {
+          margin-bottom: 0.5rem;
+          padding-left: 1.5rem;
+          position: relative;
+        }
+    
+        .option-card li:before {
+          content: "•";
+          color: #ff6b00;
+          position: absolute;
+          left: 0;
+        }
+    
+        .solution-section {
+          background: #f8f9fa;
+          padding: 2rem;
+        }
+    
+        .solution-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1.5rem;
+          margin-top: 1rem;
+        }
+    
+        .solution-item {
+          background: white;
+          padding: 1.5rem;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    
+        .solution-item h4 {
+          color: #ff6b00;
+          margin-bottom: 0.5rem;
+        }
+    
+        .package-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 2rem 0;
+        }
+    
+        .package-table th {
+          background: #ff6b00;
+          color: white;
+          padding: 1rem;
+          text-align: left;
+        }
+    
+        .package-table td {
+          padding: 1rem;
+          border: 1px solid #ddd;
+        }
+    
+        .input-qty {
+          width: 80px;
+          padding: 0.5rem;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+        }
+    
+        .notice-section {
+          background: #1a2942;
+          color: white;
+          padding: 1.5rem;
+          margin: 2rem 0;
+        }
+    
+        .notes-section {
+          padding: 2rem;
+          background: #f8f9fa;
+        }
+    
+        .note {
+          margin-bottom: 1rem;
+          padding: 1rem;
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+    
+        .total-section {
+          padding: 2rem;
+          background: #1a2942;
+          color: white;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+    
+        .section-title {
+          color: #1a2942;
+          margin-bottom: 1.5rem;
+          position: relative;
+          padding-bottom: 0.5rem;
+        }
+    
+        .section-title:after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 60px;
+          height: 3px;
+          background: #ff6b00;
+        }
+        /* Additional styles for form */
+        .contact-form {
+            padding: 2rem;
+            background: #f8f9fa;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1a2942;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #e65c00;
+        }
+
+        .tax-details {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .calculation-breakdown {
+            background: #f8f9fa;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+          <img src="zuba.png" alt="ZUBA" class="logo" style="width: 160px; height: 80px;">
+          <img src="question.png" alt="Question" class="logo" style="width: 160px; height: 120px;">
+        </header>
+    
+        <div class="quotation-info">
+          <div>
+            <h3>Addressed To:</h3>
+            <p><b>Attn:</b> Doris Karemera</p>
+            <p><b>Company Name:</b> Question Cafe</p>
+            <p><b>Company Address:</b> Kigali, Rwanda</p>
+          </div>
+          <div>
+            <p><b>No.:</b> QC/RW- quote 11/4- Kigali</p>
+            <p><b>Date:</b> 11/4/2024</p>
+            <p><b>Currency:</b> USD Payable</p>
+            <p><b>Validity:</b> 30 Days</p>
+            <p><b>Sales Manager:</b> Robert Fogler</p>
+            <p><b>Mobile Number:</b> +1 303 888 877</p>
+          </div>
+        </div>
+    
+        <div class="option-card">
+            <h3>Equipment and services included in price</h3>
+            <ul>
+              <li>Enterprise performance hardware providing higher reliability than standard</li>  
+              <li>All installation, including mounts and cabling</li>
+              <li>Site visits to confirm ideal installation method for best performance</li>
+              <li>Unlimited monthly data at download speeds of up to 220 Mbps, with 2 TB of monthly Priority Data</li>
+              <li>IT staff training for basic troubleshooting and maintenance</li>
+              <li>Monthly data usage and performance reports and system health checks</li>
+              <li>Public IP 24/7 service and maintenance</li>
+              <li>Flexibility to change monthly plans on a per-site basis</li>
+            </ul>
+          </div>
+          <div class="solution-section">
+            <h2 class="section-title">Our Solution</h2>
+            <div class="solution-grid">
+              <div class="solution-item">
+                <h4>Simple</h4>
+                <p>No up-front costs: Equipment, installation, maintenance, 24/7 customer care, and Priority Data service plans all included in one monthly price.</p>
+              </div>
+              <div class="solution-item">
+                <h4>Flexible</h4>
+                <p>You can change data plans at any time, on a site- or branch-specific basis, at no extra charge.</p>
+              </div>
+              <div class="solution-item">
+                <h4>Measurable</h4>
+                <p>We provide monthly detailed usage reports and system health checks on a site-specific basis.</p>
+              </div>
+              <div class="solution-item">
+                <h4>Available Anywhere</h4>
+                <p>Only requirement is a power source. We can install in all of your branches within weeks. We can provide service in any country where Starlink is licensed, including Kenya.</p>
+              </div>
+            </div>
+          </div>
+
+    <table class="package-table">
+        <thead>
+            <tr>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Unit Price (USD)</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Excise (20%)</th>
+                <th>VAT (18%)</th>
+                <th>Total (USD)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Rwanda</td>
+                <td>1 TB Package - Priority</td>
+                <td>$450.00</td>
+                <td><input type="number" class="input-qty" data-price="450" min="0" value="0"></td>
+                <td class="row-subtotal">$0.00</td>
+                <td class="row-excise">$0.00</td>
+                <td class="row-vat">$0.00</td>
+                <td class="row-total">$0.00</td>
+            </tr>
+            <tr>
+                <td>Rwanda</td>
+                <td>2 TB Package - Priority</td>
+                <td>$600.00</td>
+                <td><input type="number" class="input-qty" data-price="600" min="0" value="0"></td>
+                <td class="row-subtotal">$0.00</td>
+                <td class="row-excise">$0.00</td>
+                <td class="row-vat">$0.00</td>
+                <td class="row-total">$0.00</td>
+            </tr>
+            <tr>
+                <td>Rwanda</td>
+                <td>6 TB Package - Priority</td>
+                <td>$900.00</td>
+                <td><input type="number" class="input-qty" data-price="900" min="0" value="0"></td>
+                <td class="row-subtotal">$0.00</td>
+                <td class="row-excise">$0.00</td>
+                <td class="row-vat">$0.00</td>
+                <td class="row-total">$0.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Rest of the existing content -->
+    <div class="notice-section">
+        <h3>NOTICE!</h3>
+        <p>Prices are quoted in USD but will be billed in RwF according to the then-prevailing exchange rate.</p>
+      </div>
+  
+    <div class="notes-section">
+        <h3 class="highlight">Important Notes</h3>
+        <div class="note-item">1. This pricing is based on Zuba's recommended package for EQUITY BANK's usage. Includes real-time CCTV video and video conferencing capabilities.</div>
+        <div class="note-item">2. Additional charges may apply for complex installations or special requirements.</div>
+        <div class="note-item">3. Prices are in USD, payable in RWF at current exchange rates, exclusive of tax.</div>
+        <div class="note-item">4. Quote based on minimum 36-month contract.</div>
+        <div class="note-item">5. Customer must ensure stable electrical power using a stabilizer/UPS.</div>
+        <div class="note-item">6. Order confirmation requires signed agreement and advance payment.</div>
+        <div class="note-item">7. Prices subject to additional requirements and taxes.</div>
+        <div class="note-item">8. Final price may vary based on installation complexity and location.</div>
+        <div class="note-item">9. Additional data usage charged at $0.19 per GB.</div>
+      </div>
+      <div id="overage-calculator" class="note">
+        <h3>Data Overage Calculator</h3>
+        <p>Calculate additional costs for data overages:</p>
+        <input type="number" id="gb-over" placeholder="Enter GB over limit" min="0" style="padding: 0.5rem; margin: 1rem 0;">
+        <p>Cost: <span id="overage-cost">$0.00</span></p>
+      </div>
+    </div>
+      <div class="total-section">
+        <div>
+          <h2>Package Total</h2>
+          <p id="package-total">$0.00</p>
+        </div>
+        <div>
+          <h2>Data Overage</h2>
+          <p id="overage-total">$0.00</p>
+        </div>
+        <div>
+          <h2>Grand Total</h2>
+          <p id="grand-total">$0.00</p>
+        </div>
+      </div>
+  </div>
+    <!-- Add contact form section -->
+    <div class="contact-form">
+        <h2 class="section-title">Submit Quotation Request</h2>
+        <form id="quotationForm" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="company">Company Name</label>
+                <input type="text" id="company">
+            </div>
+            <div class="form-group">
+                <label for="message">Additional Notes</label>
+                <textarea id="message" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Quotation Request</button>
+        </form>
+    </div>
+
+    <script>
+        // Previous JavaScript remains the same
+        document.querySelectorAll('.input-qty').forEach(input => {
+      input.addEventListener('input', updateTotals);
+    });
+
+    document.getElementById('gb-over').addEventListener('input', calculateOverage);
+
+        function updateTotals() {
+            let packageTotal = 0;
+            let overageTotal = 0;
+            let grandTotal = 0;
+
+            document.querySelectorAll('.input-qty').forEach(input => {
+                const price = parseFloat(input.dataset.price);
+                const quantity = parseInt(input.value) || 0;
+                const subtotal = price * quantity;
+                const excise = subtotal * 0.20;  // 20% excise duty
+                const vat = (subtotal + excise) * 0.18;  // 18% VAT on subtotal + excise
+                const rowTotal = subtotal + excise + vat;
+
+                const row = input.closest('tr');
+                row.querySelector('.row-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                row.querySelector('.row-excise').textContent = `$${excise.toFixed(2)}`;
+                row.querySelector('.row-vat').textContent = `$${vat.toFixed(2)}`;
+                row.querySelector('.row-total').textContent = `$${rowTotal.toFixed(2)}`;
+
+                packageTotal += rowTotal;
+            });
+
+            const gbOver = parseFloat(document.getElementById('gb-over').value) || 0;
+            const overageCost = gbOver * 0.19;
+            overageTotal = overageCost;
+
+            grandTotal = packageTotal + overageTotal;
+
+            document.getElementById('package-total').textContent = `$${packageTotal.toFixed(2)}`;
+            document.getElementById('overage-total').textContent = `$${overageTotal.toFixed(2)}`;
+            document.getElementById('grand-total').textContent = `$${grandTotal.toFixed(2)}`;
+        }
+
+        function calculateOverage() {
+            const gbOver = parseFloat(document.getElementById('gb-over').value) || 0;
+            const overageCost = gbOver * 0.19;
+            document.getElementById('overage-cost').textContent = `$${overageCost.toFixed(2)}`;
+            updateTotals();
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            
+            // Gather form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                company: document.getElementById('company').value,
+                message: document.getElementById('message').value,
+                packageTotal: document.getElementById('package-total').textContent,
+                overageTotal: document.getElementById('overage-total').textContent,
+                grandTotal: document.getElementById('grand-total').textContent,
+                packages: Array.from(document.querySelectorAll('.input-qty')).map(input => ({
+                    description: input.closest('tr').querySelector('td:nth-child(2)').textContent,
+                    quantity: input.value,
+                    total: input.closest('tr').querySelector('.row-total').textContent
+                }))
+            };
+
+            // You would typically send this to your server
+            // For this example, we'll create a mailto link
+            const mailtoLink = `mailto:dadishimwe0@gmail.com?subject=Quotation Request from ${formData.name}&body=
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Company: ${formData.company}
+
+Selected Packages:
+${formData.packages.map(pkg => 
+    `${pkg.description}: ${pkg.quantity} units - ${pkg.total}`
+).join('\n')}
+
+Package Total: ${formData.packageTotal}
+Overage Total: ${formData.overageTotal}
+Grand Total: ${formData.grandTotal}
+
+Additional Notes:
+${formData.message}`;
+
+            window.location.href = mailtoLink;
+        }
+
+        // Initialize calculations
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTotals();
+            calculateOverage();
+        });
+    </script>
+</body>
+</html>
